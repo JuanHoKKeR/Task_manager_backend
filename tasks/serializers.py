@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    attachment = serializers.FileField(required=False, allow_null=True)
     class Meta:
         model = Task
         fields = '__all__'
