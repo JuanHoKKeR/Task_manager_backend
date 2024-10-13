@@ -10,6 +10,7 @@ def send_deadline_notifications():
     today = timezone.now().date()
     upcoming_deadline = today + timezone.timedelta(days=1)
     tasks = Task.objects.filter(deadline=upcoming_deadline, status='pending')
+    print("Notificaciones de deadline enviadas")
     
     for task in tasks:
         user = task.user
