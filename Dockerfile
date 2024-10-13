@@ -24,13 +24,19 @@ RUN pip install -r requirements.txt
 COPY . /app/
 
 # Crear el directorio para media files
-RUN mkdir -p /app/media
+RUN mkdir -p /app/media/attachments
 
-# Cambiar a celeryuser
-USER celeryuser
+
+# Copiar el script de entrada
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 
 # Exponer el puerto 8000
 EXPOSE 8000
+
+# Configurar el script de entrada
+ENTRYPOINT ["/entrypoint.sh"]
 
 # Comando por defecto (override en docker-compose)
 CMD ["gunicorn", "taskmanager.wsgi:application", "--bind", "0.0.0.0:8000"]
