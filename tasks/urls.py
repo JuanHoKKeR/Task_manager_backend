@@ -2,7 +2,7 @@
 
 from django.urls import path, include
 from rest_framework import routers
-from .api import TaskViewSet, UserViewSet, TagViewSet, TaskStaticsView
+from .api import TaskViewSet, UserViewSet, TagViewSet, TaskStaticsView, CurrentUserView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = routers.DefaultRouter()
@@ -14,5 +14,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('statistics/', TaskStaticsView.as_view(), name='task_statistics')
+    path('statistics/', TaskStaticsView.as_view(), name='task_statistics'),
+    path('current_user/', CurrentUserView.as_view(), name='current_user'),
 ]
