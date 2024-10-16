@@ -168,9 +168,13 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Configuraciones de Celery
-CELERY_BROKER_URL = config('CELERY_BROKER_URL')
-CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default=config('CELERY_BROKER_URL'))
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+# Configuraciones de Celery
+CELERY_BROKER_URL = config('CELERY_BROKER_URL', default=None)
+CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default=None)
+
+if CELERY_BROKER_URL:
+    CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
 
 # Configuraciones de Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
