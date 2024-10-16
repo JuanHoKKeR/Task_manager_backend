@@ -192,5 +192,5 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
     'http://127.0.0.1:8080',
     'https://task-manager-frontend-six-alpha.vercel.app',
-    'https://www.juancruzdev.net/',
+    'https://www.juancruzdev.net',
 ]
